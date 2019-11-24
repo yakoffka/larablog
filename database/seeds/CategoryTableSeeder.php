@@ -20,7 +20,7 @@ class CategoryTableSeeder extends Seeder
 
         for ($i = 1; $i < $num_cat; $i++) {
             $created_at = $faker->dateTime($max = 'now');
-            $updated_at = $faker->dateTime($max = 'now');
+            $updated_at = $created_at;
             $editor_id = NULL;
             $published_at = NULL;
             $name = $faker->text(rand(10, 20));
@@ -39,7 +39,7 @@ class CategoryTableSeeder extends Seeder
                 'editor_id' => $editor_id,
                 'name' => $name,
                 'slug' => Str::slug($name, '-'),
-                'description' => $faker->realText(rand(100, 500)),
+                'description' => str_replace(['\'', '-', ], '', $faker->realText(rand(500, 900))),
                 'commentable' => (rand(0, 9) > 8) ? TRUE : FALSE,
                 'rssable' => (rand(0, 9) > 8) ? TRUE : FALSE,
                 'published_at' => $published_at,

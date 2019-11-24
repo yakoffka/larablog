@@ -1,0 +1,3 @@
+Add StoreCategory
+    make:request StoreCategory;
+    create categories.create view;

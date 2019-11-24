@@ -17,10 +17,10 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('author_id')->unsigned();
             $table->bigInteger('editor_id')->unsigned()->nullable();
-            $table->string('name', 200)->unique();
-            $table->string('slug', 200)->unique();
+            $table->string('name', 255)->unique();
+            $table->string('slug', 255)->unique();
             $table->smallInteger('sort_order')->default(9);
-            $table->string('description', 500)->nullable();
+            $table->string('description', 1000)->nullable();
             $table->boolean('commentable')->default(true);
             $table->boolean('rssable')->default(true);
             $table->timestamp('published_at')->nullable();

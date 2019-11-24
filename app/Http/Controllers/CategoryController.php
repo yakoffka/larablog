@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
+use Illuminate\Support\Str;
+use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
@@ -25,7 +28,21 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $faker_category = $this->getFakerCategory();
+        return view('categories.create', compact('faker_category'));
+    }
+    /**
+     * Gets cheats for a category
+     *
+     * @return array $faker_category
+     */
+    private function getFakerCategory()
+    {
+        $faker = Faker::create();
+        $faker_category['name'] = $faker->text(rand(10, 20));
+        $faker_category['slug'] = Str::slug($faker_category['name'], '-');
+        $faker_category['description'] = str_replace(['\'', '-', ], '', $faker->realText(rand(500, 900)));
+        return $faker_category;
     }
 
     /**
@@ -34,9 +51,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
-        //
+        dd($request);
     }
 
     /**

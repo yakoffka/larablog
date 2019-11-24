@@ -6,7 +6,14 @@
 
     <p></p>
     <p>{{ $category->description }}</p>
-    <p>{{ $category->author->name }}, {{ $category->created_at }}</p>
+    <p class="author">
+            {{ $category->created_at }} {{ $category->author->name }} {{ $category->author->email }}
+        @if ( $category->editor )
+            (updated: {{ $category->updated_at }} {{ $category->editor->name }} {{ $category->editor->email }})
+        @endif
+    </p>
+
+    <a href="{{ route('categories.index') }}">to list categories</a>
 
 </div>
 @endsection

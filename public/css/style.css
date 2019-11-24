@@ -1,6 +1,27 @@
 
 
+body {
+    background-color: #fff;
+    color: #444;
+}
+
 
 .author {
     color: #aaa;
+}
+
+
+#app .shadow-sm {
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff !important;
+    background-color: #fff !important;
+}
+#app .shadow-sm a{
+    color: rgba(0,0,0,.7);
+}
+
+ol.m0 {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    padding-inline-start: 0px;
 }
