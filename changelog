@@ -1,5 +1,1 @@
-Add CategoryPolicy
-    php artisan make:policy CategoryPolicy --model=Category;
-    created categories.edit view;
-    changed constraint in categories table: onUpdate and onDelete cascade => set null (adding nullable to author_id field);
-    adding directive @can in blade.
+

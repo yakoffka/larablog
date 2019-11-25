@@ -62,18 +62,21 @@ class CategoryPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Category  $category
-     * // @return mixed ?? TRUE or FALSE ???
-     *
-     * @return bool
+     * @return mixed
      * https://laravel.com/docs/5.8/authorization#policy-methods
      * The update method will receive a User and a Post instance as its arguments, and should return true or false indicating whether the user is authorized to update the given Post.
      */
     public function update(User $user, Category $category)
     {
-        // return TRUE;
-        // dd(__METHOD__);
-        // session()->flash('message', __('message_category_update'));
-        return $user->id === $category->author_id;
+        // return $user->id === $category->author_id;
+        // temporary variant
+        if ( $user->id === $category->author_id ) {
+            session()->flash('success_message', __('success_category_update_authorization'));
+            return TRUE;
+        } else {
+            session()->flash('error_message', __('error_category_update_authorization'));
+            return FALSE;
+        }
     }
 
     /**

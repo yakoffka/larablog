@@ -34,7 +34,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // $this->authorize('create', Category::class); // authorizing action via controller helpers without model instance
         $faker_category = $this->getFakerCategory();
         return view('categories.create', compact('faker_category'));
     }
@@ -82,12 +81,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // dd($user->can('update', $post));
-        // dd(auth()->user()->can('update', $category));
-        // $this->authorize('update', $category); // authorizing action via controller helpers
-
-        // $message = 'Youre name is ' . auth()->user()->name . '; Category author name is ' . $category->author->name . '. Everything is fine';
-        // session()->flash('message', $message);
         return view('categories.edit', compact('category'));
     }
 

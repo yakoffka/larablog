@@ -20,19 +20,9 @@ class StoreCategory extends FormRequest
          *
          * this for UpdateCategory class authorize function:
          */
-        // return false;
-        // return true;
-        return $this->user();
-        return $this->user()->can('create_category');
-
-        /**
-         * By default it returns false, change it to
-         * something like this if u are checking authentication
-         *
-         * this for UpdateCategory class authorize function:
-         */
-        $category = Category::find($this->route('category'));
-        return $category && $this->user()->can('update', $category);
+        return $this->user()->can('create', Category::class);
+        // $category = Category::find($this->route('category'));
+        // return $category && $this->user()->can('update', $category);
     }
 
     /**
