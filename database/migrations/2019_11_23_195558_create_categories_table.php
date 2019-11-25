@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('author_id')->unsigned();
+            $table->bigInteger('author_id')->unsigned()->nullable();
             $table->bigInteger('editor_id')->unsigned()->nullable();
             $table->string('name', 255)->unique();
             $table->string('slug', 255)->unique();
@@ -27,7 +27,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
+                ->onUpdate('set null')->onDelete('set null');
             $table->foreign('editor_id')->references('id')->on('users')
                 ->onUpdate('set null')->onDelete('set null');
         });

@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
         $faker = Faker::create();
         $users_id = User::all()->pluck('id')->toArray();
 
-        for ($i = 1; $i < $num_cat; $i++) {
+        for ($i = 1; $i <= $num_cat; $i++) {
             $created_at = $faker->dateTime($max = 'now');
             $updated_at = $created_at;
             $editor_id = NULL;
@@ -39,13 +39,14 @@ class CategoryTableSeeder extends Seeder
                 'editor_id' => $editor_id,
                 'name' => $name,
                 'slug' => Str::slug($name, '-'),
-                'description' => str_replace(['\'', '-', ], '', $faker->realText(rand(500, 900))),
+                'description' => str_replace(['\'', '"', '-', ], '', $faker->realText(rand(500, 900))),
                 'commentable' => (rand(0, 9) > 8) ? TRUE : FALSE,
                 'rssable' => (rand(0, 9) > 8) ? TRUE : FALSE,
                 'published_at' => $published_at,
                 'created_at' => $created_at,
                 'updated_at' => $updated_at,
             ]);
+            echo "\tGenerate '$name' [$i/$num_cat categories];\n";
         }
     }
 }

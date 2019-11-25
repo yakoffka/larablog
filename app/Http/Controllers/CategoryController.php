@@ -10,6 +10,12 @@ use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        $this->authorizeResource(Category::class, 'category'); // adding authorizing action (app/Policies/CategoryPolicy.php)
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create', Category::class); // authorizing action via controller helpers without model instance
         $faker_category = $this->getFakerCategory();
         return view('categories.create', compact('faker_category'));
     }
@@ -41,7 +48,7 @@ class CategoryController extends Controller
         $faker = Faker::create();
         $faker_category['name'] = $faker->text(rand(10, 20));
         $faker_category['slug'] = Str::slug($faker_category['name'], '-');
-        $faker_category['description'] = str_replace(['\'', '-', ], '', $faker->realText(rand(500, 900)));
+        $faker_category['description'] = str_replace(['\'', '"', '-', ], '', $faker->realText(rand(500, 900)));
         return $faker_category;
     }
 
@@ -75,7 +82,13 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        // dd($user->can('update', $post));
+        // dd(auth()->user()->can('update', $category));
+        // $this->authorize('update', $category); // authorizing action via controller helpers
+
+        // $message = 'Youre name is ' . auth()->user()->name . '; Category author name is ' . $category->author->name . '. Everything is fine';
+        // session()->flash('message', $message);
+        return view('categories.edit', compact('category'));
     }
 
     /**
