@@ -1,1 +1,2 @@
-
+Adding CategoryObserver
+    php artisan make:observer CategoryObserver --model=Category
