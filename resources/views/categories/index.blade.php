@@ -40,6 +40,13 @@
                     @can('update', $category)
                         <a href="{{ route('categories.edit', $category) }}">edit</a>
                     @endcan
+                    @can('delete', $category)
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="delete">
+                        </form>
+                    @endcan
                 </td>
             </tr>
         @endforeach

@@ -1,3 +1,1 @@
-Update Category method
-    adding setAuthor, setEditor, setFlashMess methods and $fillable in Category;
-    adding request UpdateCategory.
+Create and Delete Category methods

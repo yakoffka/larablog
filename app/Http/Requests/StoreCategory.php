@@ -27,7 +27,7 @@ class StoreCategory extends FormRequest
         return [
             'name' => 'required|string|unique:categories|max:255',
             'slug' => 'required|string|unique:categories|max:255',
-            'description' => 'nullable|string|max:500',
+            'description' => 'nullable|string|max:1000',
         ];
     }
 }

@@ -16,7 +16,10 @@
     <a href="{{ route('categories.index') }}">to list categories</a>
 
     @can('update', $category)
-        or <a href="{{ route('categories.edit', $category) }}">edit this categories</a>
+        or <a href="{{ route('categories.edit', $category) }}">edit this category</a>
+    @endcan
+    @can('delete', $category)
+        or <a href="{{ route('categories.destroy', $category) }}">delete this category</a>
     @endcan
 
 </div>

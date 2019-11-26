@@ -7,6 +7,17 @@ use App\Category;
 class CategoryObserver
 {
     /**
+     * Handle the category "creating" event.
+     *
+     * @param  \App\Category  $category
+     * @return void
+     */
+    public function creating(Category $category)
+    {
+        info(__METHOD__);
+        $category->setAuthor();
+    }
+    /**
      * Handle the category "created" event.
      *
      * @param  \App\Category  $category
@@ -28,7 +39,6 @@ class CategoryObserver
         info(__METHOD__);
         $category->setEditor();
     }
-
     /**
      * Handle the category "updated" event.
      *

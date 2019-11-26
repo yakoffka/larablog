@@ -57,6 +57,7 @@ class CategoryPolicy
     public function create(User $user)
     {
         // dd(__METHOD__);
+        return !!$user->id;
     }
 
     /**
@@ -82,7 +83,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        // dd(__METHOD__);
+        return $user->id === $category->author_id;
     }
 
     /**

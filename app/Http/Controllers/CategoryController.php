@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with(['author', 'editor'])->get();
+        $categories = Category::with(['author', 'editor'])->orderBy('created_at')->get();
         return view('categories.index', compact('categories'));
     }
 
@@ -59,7 +59,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategory $request)
     {
-        dd($request);
+        $category = Category::create([
+            'name' => $request['name'],
+            'slug' => $request['slug'],
+            'description' => $request['description'],
+        ]);
+
+        return redirect()->route('categories.show', compact('category'));
     }
 
     /**
@@ -111,6 +117,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
