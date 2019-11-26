@@ -14,7 +14,19 @@ class CategoryObserver
      */
     public function created(Category $category)
     {
-        //
+        info(__METHOD__);
+    }
+
+    /**
+     * Handle the category "updating" event.
+     *
+     * @param  \App\Category  $category
+     * @return void
+     */
+    public function updating(Category $category)
+    {
+        info(__METHOD__);
+        $category->setEditor();
     }
 
     /**
@@ -25,7 +37,8 @@ class CategoryObserver
      */
     public function updated(Category $category)
     {
-        //
+        info(__METHOD__);
+        $category->setFlashMess();
     }
 
     /**
@@ -36,7 +49,7 @@ class CategoryObserver
      */
     public function deleted(Category $category)
     {
-        //
+        info(__METHOD__);
     }
 
     /**
@@ -47,7 +60,7 @@ class CategoryObserver
      */
     public function restored(Category $category)
     {
-        //
+        info(__METHOD__);
     }
 
     /**
@@ -58,6 +71,6 @@ class CategoryObserver
      */
     public function forceDeleted(Category $category)
     {
-        //
+        info(__METHOD__);
     }
 }

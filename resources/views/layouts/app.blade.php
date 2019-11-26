@@ -77,20 +77,27 @@
 
         <main class="py-4">
 
-            @if( session('success_message'))
-                <div class="fixed_alert alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success_message') }}
+            @if( session('message'))
+                <div class="fixed_alert alert alert-{{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             @endif
-            @if( session('error_message'))
-                <div class="fixed_alert alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error_message') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+            @if ($errors->any())
+                <div class="container">
+                    <div class="fixed_alert alert alert-danger alert-dismissible fade show" role="alert">
+                        <ol>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ol>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
             @endif
 

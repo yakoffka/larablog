@@ -1,2 +1,3 @@
-Adding CategoryObserver
-    php artisan make:observer CategoryObserver --model=Category
+Update Category method
+    adding setAuthor, setEditor, setFlashMess methods and $fillable in Category;
+    adding request UpdateCategory.

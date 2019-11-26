@@ -15,5 +15,9 @@
 
     <a href="{{ route('categories.index') }}">to list categories</a>
 
+    @can('update', $category)
+        or <a href="{{ route('categories.edit', $category) }}">edit this categories</a>
+    @endcan
+
 </div>
 @endsection

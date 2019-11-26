@@ -6,7 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
-use App\Http\Requests\StoreCategory;
+use App\Http\Requests\{StoreCategory, UpdateCategory};
 
 class CategoryController extends Controller
 {
@@ -91,9 +91,16 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategory $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request['name'],
+            'slug' => $request['slug'],
+            'description' => $request['description'],
+        ]);
+
+        // return view('categories.show', compact('category'));
+        return redirect()->route('categories.show', compact('category'));
     }
 
     /**

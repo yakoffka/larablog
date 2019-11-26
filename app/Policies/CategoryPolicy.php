@@ -32,6 +32,7 @@ class CategoryPolicy
     public function viewAny(User $user)
     {
         dd(__METHOD__);
+        return TRUE;
     }
 
     /**
@@ -43,7 +44,8 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category)
     {
-        dd(__METHOD__);
+        // dd(__METHOD__);
+        return TRUE;
     }
 
     /**
@@ -54,7 +56,7 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        dd(__METHOD__);
+        // dd(__METHOD__);
     }
 
     /**
@@ -68,15 +70,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category)
     {
-        // return $user->id === $category->author_id;
-        // temporary variant
-        if ( $user->id === $category->author_id ) {
-            session()->flash('success_message', __('success_category_update_authorization'));
-            return TRUE;
-        } else {
-            session()->flash('error_message', __('error_category_update_authorization'));
-            return FALSE;
-        }
+        return $user->id === $category->author_id;
     }
 
     /**
@@ -88,7 +82,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        dd(__METHOD__);
+        // dd(__METHOD__);
     }
 
     /**
@@ -100,7 +94,7 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category)
     {
-        dd(__METHOD__);
+        // dd(__METHOD__);
     }
 
     /**
@@ -112,6 +106,6 @@ class CategoryPolicy
      */
     public function forceDelete(User $user, Category $category)
     {
-        dd(__METHOD__);
+        // dd(__METHOD__);
     }
 }

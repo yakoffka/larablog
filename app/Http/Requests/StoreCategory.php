@@ -14,15 +14,7 @@ class StoreCategory extends FormRequest
      */
     public function authorize()
     {
-        /**
-         * By default it returns false, change it to
-         * something like this if u are checking authentication
-         *
-         * this for UpdateCategory class authorize function:
-         */
         return $this->user()->can('create', Category::class);
-        // $category = Category::find($this->route('category'));
-        // return $category && $this->user()->can('update', $category);
     }
 
     /**
@@ -34,7 +26,7 @@ class StoreCategory extends FormRequest
     {
         return [
             'name' => 'required|string|unique:categories|max:255',
-            'slug' => 'nullable|string|unique:categories|max:255',
+            'slug' => 'required|string|unique:categories|max:255',
             'description' => 'nullable|string|max:500',
         ];
     }
