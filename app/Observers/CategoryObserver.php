@@ -26,6 +26,7 @@ class CategoryObserver
     public function created(Category $category)
     {
         info(__METHOD__);
+        $category->setFlashMess('created');
     }
 
     /**
@@ -48,7 +49,7 @@ class CategoryObserver
     public function updated(Category $category)
     {
         info(__METHOD__);
-        $category->setFlashMess();
+        $category->setFlashMess('updated');
     }
 
     /**
@@ -60,6 +61,7 @@ class CategoryObserver
     public function deleted(Category $category)
     {
         info(__METHOD__);
+        $category->setFlashMess('deleted');
     }
 
     /**

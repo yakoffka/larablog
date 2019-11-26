@@ -19,7 +19,11 @@
         or <a href="{{ route('categories.edit', $category) }}">edit this category</a>
     @endcan
     @can('delete', $category)
-        or <a href="{{ route('categories.destroy', $category) }}">delete this category</a>
+        <form action="{{ route('categories.destroy', $category) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="delete">
+        </form>
     @endcan
 
 </div>

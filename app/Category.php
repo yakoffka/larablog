@@ -51,10 +51,10 @@ class Category extends Model
      *
      * @return  Category $category
      */
-    public function setFlashMess()
+    public function setFlashMess($event)
     {
         info(__METHOD__);
-        session()->flash('message', __('success_category_update'));
+        session()->flash('message', __('success_category_' . $event));
         session()->flash('alert-class', 'success');
         return $this;
     }
